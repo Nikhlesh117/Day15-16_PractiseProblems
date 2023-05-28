@@ -27,7 +27,7 @@ namespace Reflection
             fetcher.FetchClassMembers(type);
 
 
-            //UC3
+            //UC3 & UC3
             // Create an instance of FindClosestEvenNumber using reflection
             object defaultInstance = fetcher.CreateInstance(type);
             object parameterizedInstance = fetcher.CreateInstance(type, 42);
@@ -41,6 +41,15 @@ namespace Reflection
             if (parameterizedInstance != null)
             {
                 Console.WriteLine("Parameterized instance of FindClosestEvenNumber created using reflection.");
+            }
+
+            // Invoke the FindClosestEven method on the instance using reflection
+            object result = fetcher.InvokeMethod(parameterizedInstance, "FindClosestEvenNumber", 17);
+
+            // Check if the method invocation was successful and print the result
+            if (result != null)
+            {
+                Console.WriteLine("Method invoked successfully. Result: " + result);
             }
 
             Console.ReadLine();

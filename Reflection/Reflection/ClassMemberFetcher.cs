@@ -34,6 +34,14 @@ namespace Reflection
             {
                 Console.WriteLine($"- {field.Name}");
             }
+            // Get all public methods
+            Console.WriteLine("Public Methods:");
+            MethodInfo[] publicMethods = type.GetMethods(BindingFlags.Public | BindingFlags.Instance);
+            foreach (MethodInfo method in publicMethods)
+            {
+                Console.WriteLine(method.Name);
+            }
+            Console.WriteLine();
         }
         public object CreateInstance(Type classType, params object[] constructorArgs)
         {
@@ -58,5 +66,19 @@ namespace Reflection
             }
             return parameterTypes;
         }
+        public object InvokeMethod(object instance, string methodName, params object[] methodArgs)
+        {
+            Type classType = instance.GetType();
+            MethodInfo method = classType.GetMethod(methodName);
+
+            if (method != null)
+            {
+                object result = method.Invoke(instance, methodArgs);
+                return result;
+            }
+
+            return null;
+        }
+
     }
 }
