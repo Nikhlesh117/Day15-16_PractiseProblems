@@ -9,7 +9,7 @@ namespace Reflection
 {
     public class ClassMemberFetcher
     {
-        public static void FetchClassMembers(Type type)
+        public void FetchClassMembers(Type type)
         {
             Console.WriteLine("\nMethods:");
             foreach (MethodInfo method in type.GetMethods())
@@ -27,6 +27,12 @@ namespace Reflection
             foreach (PropertyInfo property in type.GetProperties())
             {
                 Console.WriteLine(property.ToString());
+            }
+
+            Console.WriteLine("\nFields:");
+            foreach (FieldInfo field in type.GetFields())
+            {
+                Console.WriteLine($"- {field.Name}");
             }
         }
     }
