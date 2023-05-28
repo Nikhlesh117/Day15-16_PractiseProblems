@@ -8,6 +8,16 @@ namespace Reflection
 {
     public class ClosestEvenNumberFinder
     {
+        private int number;
+        public ClosestEvenNumberFinder()
+        {
+            // Default constructor implementation
+        }
+
+        public ClosestEvenNumberFinder(int value)
+        {
+            // Parameterized constructor implementation
+        }
         public int FindClosestEvenNumber(int N)
         {
             string strNum = Math.Abs(N).ToString();

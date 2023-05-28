@@ -28,18 +28,20 @@ namespace Reflection
 
 
             //UC3
-            ConstructorInfo constructor = type.GetConstructor(Type.EmptyTypes);
-            if (constructor != null)
+            // Create an instance of FindClosestEvenNumber using reflection
+            object defaultInstance = fetcher.CreateInstance(type);
+            object parameterizedInstance = fetcher.CreateInstance(type, 42);
+
+            // Check if the instances are created successfully
+            if (defaultInstance != null)
             {
-                object emptyObject = constructor.Invoke(null);
-                Console.WriteLine("Empty object of ClosestEvenNumberFinder class created using reflection.");
-            }
-            else
-            {
-                Console.WriteLine("Default constructor not found. Failed to create an empty object.");
+                Console.WriteLine("Default instance of FindClosestEvenNumber created using reflection.");
             }
 
-            
+            if (parameterizedInstance != null)
+            {
+                Console.WriteLine("Parameterized instance of FindClosestEvenNumber created using reflection.");
+            }
 
             Console.ReadLine();
 

@@ -35,5 +35,28 @@ namespace Reflection
                 Console.WriteLine($"- {field.Name}");
             }
         }
+        public object CreateInstance(Type classType, params object[] constructorArgs)
+        {
+            object instance = null;
+
+            // Get the constructor with matching parameter types
+            ConstructorInfo constructor = classType.GetConstructor(GetParameterTypes(constructorArgs));
+            if (constructor != null)
+            {
+                instance = constructor.Invoke(constructorArgs);
+            }
+
+            return instance;
+        }
+
+        private Type[] GetParameterTypes(object[] parameters)
+        {
+            Type[] parameterTypes = new Type[parameters.Length];
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                parameterTypes[i] = parameters[i].GetType();
+            }
+            return parameterTypes;
+        }
     }
 }
