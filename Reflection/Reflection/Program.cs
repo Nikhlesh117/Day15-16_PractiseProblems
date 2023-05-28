@@ -19,6 +19,9 @@ namespace Reflection
             closestNum = finder.FindClosestEvenNumber(N);
             Console.WriteLine($"Closest number to {N} with all even digits: {closestNum}");
 
+            Type type = typeof(ClosestEvenNumberFinder);
+            ClassMemberFetcher.FetchClassMembers(type);
+
             Console.ReadLine();
         }
     }
